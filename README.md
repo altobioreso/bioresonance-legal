@@ -11,7 +11,7 @@ Android application.
 The public copy deliberately excludes application secrets, Firebase configuration
 and RevenueCat API keys.
 
-Public support and privacy contact: `bioresonance528hz@gmail.com`.
+Public support and privacy contact: `bioresonance528hz (arobase) gmail.com`.
 
 The branded domain reserved for Bioresonance is `bioresonance.club`. GitHub Pages
 can initially serve the documents from its default URL; a branded subdomain can be
