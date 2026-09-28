@@ -1,0 +1,5 @@
+# Public pages are available to search engines, including Googlebot, Bingbot and OAI-SearchBot.
+User-agent: *
+Allow: /
+
+Sitemap: https://bioresonance.club/sitemap.xml

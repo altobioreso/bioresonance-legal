@@ -608,3 +608,40 @@ p, li { font-size: 1rem; }
   .metric-grid article { min-height: 130px; }
   .screenshot-stack { min-height: 420px; }
 }
+
+/* Multilingual navigation and readable product information. */
+.skip-link { position: absolute; top: -100px; left: 16px; z-index: 10; padding: 12px 18px; border-radius: 12px; color: #fff; background: #002039; }
+.skip-link:focus { top: 12px; }
+a:focus-visible, summary:focus-visible { outline: 3px solid #0076a7; outline-offset: 5px; }
+.language-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 12px; padding-block: 8px 18px; }
+.language-nav a { display: inline-block; padding: 6px 10px; border-radius: 999px; color: #365769; font-size: .9rem; font-weight: 650; text-decoration: none; }
+.language-nav a[aria-current="page"] { color: #fff; background: #0076a7; }
+.language-nav a:hover { text-decoration: underline; }
+a.store-badge { text-decoration: none; cursor: pointer; }
+a.store-badge:hover { color: #fff; background: #163b55; transform: translateY(-2px); }
+.hero-copy h1 { overflow-wrap: break-word; hyphens: auto; }
+.app-facts { padding-block: 100px 60px; }
+.app-facts h2, .faq-section h2 { font-size: clamp(2rem, 4vw, 3.3rem); margin: 0 0 32px; }
+.app-facts dl { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.app-facts dl > div { min-width: 0; padding: 24px; border: 1px solid #c8e5ee; border-radius: 20px; background: #e2f6fc; }
+.app-facts dt { color: #365769; font-size: .85rem; font-weight: 750; }
+.app-facts dd { margin: 8px 0 0; overflow-wrap: anywhere; }
+.faq-section { max-width: 900px; padding-bottom: 30px; }
+.faq-section details { margin-block: 12px; padding: 22px 24px; border: 1px solid #c8e5ee; border-radius: 18px; background: #fff; }
+.faq-section summary { cursor: pointer; color: #002039; font-weight: 750; font-size: 1.05rem; }
+.faq-section details p { max-width: 75ch; margin-bottom: 0; color: #365769; }
+.site-footer nav, .site-footer > div { min-width: 0; }
+.site-footer nav a, .site-footer nav span { overflow-wrap: anywhere; }
+@media (max-width: 680px) {
+  .language-nav { justify-content: center; gap: 4px; padding-bottom: 0; }
+  .language-nav a { font-size: .82rem; }
+  .app-facts { padding-top: 72px; }
+  .app-facts dl { grid-template-columns: 1fr; }
+  .faq-section details { padding: 20px; }
+}
+/* Keep translated headings readable without splitting ordinary words. */
+.hero-copy h1 { font-size: clamp(2.7rem, 5.4vw, 4.75rem); line-height: 1.04; letter-spacing: -.045em; hyphens: none; }
+@media (max-width: 680px) {
+  .hero-copy h1 { font-size: clamp(2.35rem, 10vw, 3.1rem); }
+}
+.hero-glow { max-width: 100%; }
