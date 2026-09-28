@@ -17,16 +17,16 @@ $alternates
   <meta property="og:url" content="$canonical">
   <meta property="og:locale" content="$locale">
 $og_alternates
-  <meta property="og:image" content="https://bioresonance.club/assets/landing/bioresonance-hero.webp">
+  <meta property="og:image" content="$hero_image_url">
   <meta property="og:image:alt" content="$hero_alt">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="$title">
   <meta name="twitter:description" content="$description">
-  <meta name="twitter:image" content="https://bioresonance.club/assets/landing/bioresonance-hero.webp">
+  <meta name="twitter:image" content="$hero_image_url">
   <meta name="twitter:image:alt" content="$hero_alt">
   <link rel="icon" href="/assets/landing/bioresonance-logo.webp">
-  <link rel="stylesheet" href="/styles.css">
-  <script src="/language-menu.js" defer></script>
+  <link rel="stylesheet" href="$stylesheet_path">
+  <script src="$language_script_path" defer></script>
   <script type="application/ld+json">$schema</script>
 </head>
 <body class="landing-body">
@@ -64,7 +64,7 @@ $og_alternates
       </div>
       <div class="hero-visual">
         <div class="hero-glow" aria-hidden="true"></div>
-        <img src="/assets/landing/bioresonance-hero.webp" width="680" height="1478" alt="$hero_alt" fetchpriority="high" decoding="async">
+        <img src="$hero_image_path" width="680" height="1478" alt="$hero_alt" fetchpriority="high" decoding="async">
       </div>
     </section>
     <section class="trust-strip landing-section" aria-label="$trust_label">
@@ -86,8 +86,8 @@ $og_alternates
           <ul class="check-list"><li>$check1</li><li>$check2</li><li>$check3</li><li>$check4</li></ul>
         </div>
         <div class="screenshot-stack">
-          <figure class="phone-shot phone-shot-back"><img src="/assets/landing/local-ai.webp" width="520" height="1130" alt="$ai_alt" loading="lazy" decoding="async"></figure>
-          <figure class="phone-shot phone-shot-front"><img src="/assets/landing/immersive-player.webp" width="520" height="1130" alt="$player_alt" loading="lazy" decoding="async"></figure>
+          <figure class="phone-shot phone-shot-back"><img src="$ai_image_path" width="520" height="1130" alt="$ai_alt" loading="lazy" decoding="async"></figure>
+          <figure class="phone-shot phone-shot-front"><img src="$player_image_path" width="520" height="1130" alt="$player_alt" loading="lazy" decoding="async"></figure>
         </div>
       </div>
     </section>

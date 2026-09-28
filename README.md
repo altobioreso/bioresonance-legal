@@ -33,6 +33,18 @@ Commit both source and generated files. GitHub Pages serves the checked-in HTML;
 there is no client-side translation, mandatory language redirect or JavaScript
 needed to read the product information, follow links or open the FAQ.
 
+The language picker is a native `details` disclosure in the header;
+`language-menu.js` adds Escape, outside-click and focus dismissal. The build
+fingerprints stylesheet and script URLs so browsers load assets matching the
+current HTML. Its three Lucide icons ship locally with `lucide-LICENSE.txt`.
+
+Each locale has three optimized WebP images in `assets/landing`:
+`bioresonance-hero-<language>.webp`, `local-ai-<language>.webp` and
+`immersive-player-<language>.webp`. They use the existing localized App Store
+artwork, including translated UI. The hero is also the locale's social sharing
+and structured-data screenshot. Keep the 680×1478 hero and 520×1130 secondary
+dimensions when replacing artwork.
+
 `robots.txt` permits public indexing, including Googlebot, Bingbot and
 OAI-SearchBot. `sitemap.xml` lists the six canonical landing pages and two legal
 pages. Submit it in Google Search Console and Bing Webmaster Tools with an

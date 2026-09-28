@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build the static, multilingual website using Python's standard library."""
 import argparse
+import hashlib
 import html
 import json
 from pathlib import Path
@@ -18,12 +19,21 @@ def render_all():
     data = {lang: json.loads((ROOT / f'content-{lang}.json').read_text()) for lang in LANGUAGES}
     template = Template((ROOT / 'template.html.in').read_text())
     output = {}
+    # A new URL ensures returning visitors load the assets matching the HTML.
+    assets = {name: '/' + name + '?v=' + hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:12]
+              for name in ('styles.css', 'language-menu.js')}
     for lang, content in data.items():
         if content.keys() != data['en'].keys() or content['lang'] != lang:
             raise ValueError(f'Locale schema mismatch: {lang}')
         canonical = SITE + PATHS[lang]
         values = {key: html.escape(value, quote=True) for key, value in content.items() if isinstance(value, str)}
         values.update(canonical=canonical, page_path=PATHS[lang], app_store=APP_STORE, language_code=lang.upper())
+        values.update(stylesheet_path=assets['styles.css'], language_script_path=assets['language-menu.js'])
+        image_suffix = '-' + lang
+        values.update(hero_image_path=f'/assets/landing/bioresonance-hero{image_suffix}.webp',
+                      ai_image_path=f'/assets/landing/local-ai{image_suffix}.webp',
+                      player_image_path=f'/assets/landing/immersive-player{image_suffix}.webp')
+        values['hero_image_url'] = SITE + values['hero_image_path']
         separator = ',' if lang == 'en' else ('\u202f' if lang in ('fr', 'pt') else '.')
         values.update(metric1_value='10' + separator + '000+', metric2_value='1' + separator + '500')
         values['alternates'] = '\n'.join(f'  <link rel="alternate" hreflang="{code}" href="{SITE}{path}">' for code, path in PATHS.items()) + f'\n  <link rel="alternate" hreflang="x-default" href="{SITE}/">'
@@ -42,7 +52,7 @@ def render_all():
             {'@type': 'Person', '@id': SITE + '/#developer', 'name': 'Boris Douarre'},
             {'@type': 'WebSite', '@id': SITE + '/#website', 'url': SITE + '/', 'name': 'Bioresonance', 'inLanguage': list(LANGUAGES), 'publisher': {'@id': SITE + '/#developer'}},
             {'@type': 'WebPage', '@id': canonical + '#webpage', 'url': canonical, 'name': content['title'], 'description': content['description'], 'inLanguage': lang, 'isPartOf': {'@id': SITE + '/#website'}, 'mainEntity': {'@id': SITE + '/#app'}},
-            {'@type': 'MobileApplication', '@id': SITE + '/#app', 'name': 'Bioresonance: Frequency Sounds', 'url': SITE + '/', 'description': content['hero_lead'], 'applicationCategory': 'LifestyleApplication', 'operatingSystem': 'iOS 16.6 or later; iPadOS 16.6 or later', 'availableOnDevice': ['iPhone', 'iPad'], 'inLanguage': list(LANGUAGES), 'installUrl': APP_STORE, 'sameAs': APP_STORE, 'image': SITE + '/assets/landing/bioresonance-logo.webp', 'screenshot': SITE + '/assets/landing/bioresonance-hero.webp', 'author': {'@id': SITE + '/#developer'}}
+            {'@type': 'MobileApplication', '@id': SITE + '/#app', 'name': 'Bioresonance: Frequency Sounds', 'url': SITE + '/', 'description': content['hero_lead'], 'applicationCategory': 'LifestyleApplication', 'operatingSystem': 'iOS 16.6 or later; iPadOS 16.6 or later', 'availableOnDevice': ['iPhone', 'iPad'], 'inLanguage': list(LANGUAGES), 'installUrl': APP_STORE, 'sameAs': APP_STORE, 'image': SITE + '/assets/landing/bioresonance-logo.webp', 'screenshot': values['hero_image_url'], 'author': {'@id': SITE + '/#developer'}}
         ]}
         values['schema'] = json.dumps(schema, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c')
         output['index.html' if lang == 'en' else f'{lang}.html'] = template.substitute(values)
