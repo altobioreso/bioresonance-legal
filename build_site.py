@@ -23,12 +23,19 @@ def render_all():
             raise ValueError(f'Locale schema mismatch: {lang}')
         canonical = SITE + PATHS[lang]
         values = {key: html.escape(value, quote=True) for key, value in content.items() if isinstance(value, str)}
-        values.update(canonical=canonical, page_path=PATHS[lang], app_store=APP_STORE)
+        values.update(canonical=canonical, page_path=PATHS[lang], app_store=APP_STORE, language_code=lang.upper())
         separator = ',' if lang == 'en' else ('\u202f' if lang in ('fr', 'pt') else '.')
         values.update(metric1_value='10' + separator + '000+', metric2_value='1' + separator + '500')
         values['alternates'] = '\n'.join(f'  <link rel="alternate" hreflang="{code}" href="{SITE}{path}">' for code, path in PATHS.items()) + f'\n  <link rel="alternate" hreflang="x-default" href="{SITE}/">'
         values['og_alternates'] = '\n'.join(f'  <meta property="og:locale:alternate" content="{item["locale"]}">' for code, item in data.items() if code != lang)
-        values['language_links'] = '\n'.join(f'<a href="{PATHS[code]}" lang="{code}" hreflang="{code}"' + (' aria-current="page"' if code == lang else '') + f'>{html.escape(item["language_name"])}</a>' for code, item in data.items())
+        values['language_links'] = '\n'.join(
+            f'<a href="{PATHS[code]}" lang="{code}" hreflang="{code}"'
+            + (' aria-current="page"' if code == lang else '')
+            + f'><span class="language-option-code" aria-hidden="true">{code.upper()}</span>'
+            + f'<span>{html.escape(item["language_name"])}</span>'
+            + '<span class="language-icon icon-check" aria-hidden="true"></span></a>'
+            for code, item in data.items()
+        )
         values['store_badge'] = f'<a class="store-badge" href="{APP_STORE}" aria-label="{values["store_accessible"]}">{APPLE_ICON}<span><small>{values["store_small"]}</small><strong>App Store</strong></span></a>'
         values['faq_html'] = '\n'.join(f'<details><summary>{html.escape(faq["q"])}</summary><p>{html.escape(faq["a"])}</p></details>' for faq in content['faq'])
         schema = {'@context': 'https://schema.org', '@graph': [

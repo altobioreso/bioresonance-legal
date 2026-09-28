@@ -26,6 +26,7 @@ $og_alternates
   <meta name="twitter:image:alt" content="$hero_alt">
   <link rel="icon" href="/assets/landing/bioresonance-logo.webp">
   <link rel="stylesheet" href="/styles.css">
+  <script src="/language-menu.js" defer></script>
   <script type="application/ld+json">$schema</script>
 </head>
 <body class="landing-body">
@@ -38,8 +39,19 @@ $og_alternates
     <nav class="site-nav" aria-label="$nav_label">
       <a href="#experience">$nav_experience</a><a href="#how-it-works">$nav_how</a><a href="#faq">$nav_faq</a><a href="#download">$nav_download</a>
     </nav>
+    <details class="language-switcher">
+      <summary aria-label="$languages_label — $language_name">
+        <span class="language-icon icon-globe" aria-hidden="true"></span>
+        <span class="language-name">$language_name</span>
+        <span class="language-short" aria-hidden="true">$language_code</span>
+        <span class="language-icon icon-chevron" aria-hidden="true"></span>
+      </summary>
+      <nav class="language-menu" aria-label="$languages_label">
+        <p class="language-menu-label">$languages_label</p>
+        $language_links
+      </nav>
+    </details>
   </header>
-  <nav class="language-nav landing-section" aria-label="$languages_label">$language_links</nav>
   <main id="top" tabindex="-1">
     <section class="landing-section hero-section">
       <div class="hero-copy">
