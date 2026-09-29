@@ -12,6 +12,7 @@ SITE = 'https://bioresonance.club'
 APP_STORE = 'https://apps.apple.com/us/app/bioresonance-frequency-sounds/id6807718780'
 LANGUAGES = ('en', 'fr', 'de', 'es', 'it', 'pt')
 PATHS = {lang: '/' if lang == 'en' else f'/{lang}.html' for lang in LANGUAGES}
+CHOICE_PATHS = {**PATHS, 'en': '/?lang=en'}
 APPLE_ICON = '<svg class="store-icon apple-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.7 19.5c-.8 1.2-1.7 2.4-3 2.5-1.4 0-1.8-.8-3.3-.8s-2 .8-3.3.8c-1.3.1-2.3-1.3-3.1-2.5-1.7-2.5-3-7-.3-10.1.9-1.5 2.4-2.5 4.1-2.5 1.3 0 2.5.9 3.3.9.8 0 2.2-1.1 3.7-.9.7 0 2.4.3 3.6 1.9-3.1 1.8-2.6 5.9.5 7.1-.7 1.6-1.5 3.3-2.2 3.6ZM14.4 5.2c.7-.8 1.9-1.5 2.9-1.5.1 1.2-.3 2.4-1 3.2-.7.9-1.8 1.5-2.9 1.5-.1-1.2.4-2.4 1-3.2Z"/></svg>'
 
 
@@ -27,7 +28,7 @@ def render_all():
             raise ValueError(f'Locale schema mismatch: {lang}')
         canonical = SITE + PATHS[lang]
         values = {key: html.escape(value, quote=True) for key, value in content.items() if isinstance(value, str)}
-        values.update(canonical=canonical, page_path=PATHS[lang], app_store=APP_STORE, language_code=lang.upper())
+        values.update(canonical=canonical, page_path=CHOICE_PATHS[lang], app_store=APP_STORE, language_code=lang.upper())
         values.update(stylesheet_path=assets['styles.css'], language_script_path=assets['language-menu.js'])
         image_suffix = '-' + lang
         values.update(hero_image_path=f'/assets/landing/bioresonance-hero{image_suffix}.webp',
@@ -39,7 +40,7 @@ def render_all():
         values['alternates'] = '\n'.join(f'  <link rel="alternate" hreflang="{code}" href="{SITE}{path}">' for code, path in PATHS.items()) + f'\n  <link rel="alternate" hreflang="x-default" href="{SITE}/">'
         values['og_alternates'] = '\n'.join(f'  <meta property="og:locale:alternate" content="{item["locale"]}">' for code, item in data.items() if code != lang)
         values['language_links'] = '\n'.join(
-            f'<a href="{PATHS[code]}" lang="{code}" hreflang="{code}"'
+            f'<a href="{CHOICE_PATHS[code]}" lang="{code}" hreflang="{code}"'
             + (' aria-current="page"' if code == lang else '')
             + f'><span class="language-option-code" aria-hidden="true">{code.upper()}</span>'
             + f'<span>{html.escape(item["language_name"])}</span>'

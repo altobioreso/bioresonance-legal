@@ -29,12 +29,30 @@ python3 verify_site.py
 python3 -m http.server 8876 --bind 127.0.0.1
 ```
 
-Commit both source and generated files. GitHub Pages serves the checked-in HTML;
-there is no client-side translation, mandatory language redirect or JavaScript
-needed to read the product information, follow links or open the FAQ.
+Commit both source and generated files. GitHub Pages serves the checked-in HTML.
+There is no client-side translation, and JavaScript is not needed to read the
+product information, follow links or open the FAQ.
+
+## Automatic language selection
+
+At `/` and `/index.html`, `language-menu.js` selects the first supported language
+from `navigator.languages` (including regional variants such as `fr-CA` and
+`pt-BR`). A language chosen in the menu is saved in local storage and takes
+priority on future visits to the entry point. English is the fallback.
+
+Explicit locale URLs such as `/fr.html` keep their language, so shared links and
+search results remain predictable. Legal pages do not redirect. The English
+menu link uses `/?lang=en` so it also works when storage is blocked. A valid
+`lang` parameter overrides detection at the entry point. Redirects preserve
+other query parameters and section anchors, and use `location.replace` to avoid
+a back-button loop. Without JavaScript, the static English entry page and all
+six language links remain available.
+
+Run the routing and menu behavior checks with `node --test language-menu.test.cjs`.
 
 The language picker is a native `details` disclosure in the header;
-`language-menu.js` adds Escape, outside-click and focus dismissal. The build
+`language-menu.js` runs early for detection, then adds preference storage,
+Escape, outside-click and focus dismissal once the page is ready. The build
 fingerprints stylesheet and script URLs so browsers load assets matching the
 current HTML. Its three Lucide icons ship locally with `lucide-LICENSE.txt`.
 

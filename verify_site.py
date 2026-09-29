@@ -45,6 +45,12 @@ for lang in LANGUAGES:
     check(canonical == [SITE + PATHS[lang]], f'{lang}: self canonical')
     alternates = {a['hreflang']: a['href'] for a in page.nodes('link') if a.get('rel') == 'alternate'}
     check(alternates == {**{l: SITE+p for l,p in PATHS.items()}, 'x-default': SITE+'/'}, f'{lang}: reciprocal hreflang')
+    language_links = {a['lang']: a['href'] for a in page.nodes('a')
+                      if a.get('lang') in LANGUAGES and a.get('hreflang') == a.get('lang')}
+    check(language_links == {**PATHS, 'en': '/?lang=en'}, f'{lang}: usable explicit language choices')
+    if lang == 'en':
+        home = next(a for a in page.nodes('a') if a.get('aria-label') == content['home_label'])
+        check(home['href'] == '/?lang=en', 'English home preserves choice without storage')
     check(not any('noindex' in a.get('content', '') or 'nosnippet' in a.get('content', '') for a in page.nodes('meta')), f'{lang}: robots blocking')
     badges = [a for a in page.nodes('a') if a.get('class') == 'store-badge']
     check(len(badges) == 2 and all(a.get('href') == APP_STORE and not a.get('aria-disabled') for a in badges), f'{lang}: iOS calls to action')

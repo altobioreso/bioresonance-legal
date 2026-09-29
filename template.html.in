@@ -10,6 +10,7 @@
   <meta name="apple-itunes-app" content="app-id=6807718780">
   <link rel="canonical" href="$canonical">
 $alternates
+  <script src="$language_script_path"></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bioresonance">
   <meta property="og:title" content="$title">
@@ -26,7 +27,6 @@ $og_alternates
   <meta name="twitter:image:alt" content="$hero_alt">
   <link rel="icon" href="/assets/landing/bioresonance-logo.webp">
   <link rel="stylesheet" href="$stylesheet_path">
-  <script src="$language_script_path" defer></script>
   <script type="application/ld+json">$schema</script>
 </head>
 <body class="landing-body">
