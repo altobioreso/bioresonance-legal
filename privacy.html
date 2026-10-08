@@ -14,7 +14,7 @@
     <a class="back" href="index.html">← Bioresonance legal</a>
     <p class="eyebrow">BIORESONANCE</p>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 9, 2026</p>
+    <p class="updated">Last updated: October 8, 2026</p>
 
     <p>This Privacy Policy explains how Bioresonance (“Bioresonance”, “we”, “us” or “our”) handles information when you use the Bioresonance mobile application (the “App”). Bioresonance is designed as a private, on-device relaxation and wellbeing experience.</p>
 
@@ -26,6 +26,7 @@
         <li>We do not use this content for advertising or sell it.</li>
         <li>RevenueCat and the relevant app store process purchase and subscription information. RevenueCat also processes subscription-offer usage and technical information, including an approximate country.</li>
         <li>Firebase Crashlytics and Google ML Kit process technical diagnostics and usage information as explained below. We do not attach your photos or wellbeing text to these technical reports.</li>
+        <li>From iOS version 1.0.2, Apple Ads attribution data helps us measure which campaigns lead to installations, trials and paid subscriptions, using RevenueCat.</li>
       </ul>
     </aside>
 
@@ -51,6 +52,10 @@
     <p>When Firebase Crashlytics is enabled in a release, Google may receive technical diagnostic information such as crash stack traces, relevant application state, app version, device model, operating-system version, timestamps, installation identifiers and session identifiers. Associated Firebase installation and session services also process app-instance identifiers and session events. This information helps identify and fix reliability problems.</p>
     <p>We do not use Firebase Analytics in the current App, and we do not intentionally include your voice, transcription, photo or wellbeing descriptions in Crashlytics logs.</p>
     <p>On Android, the App uses Google ML Kit for optional on-device face detection. The bundled SDK may send Google device and app information, installation identifiers, performance measurements, feature-use events, error codes and configuration information such as image format and resolution. Google uses this technical information for diagnostics and usage analytics. These exchanges do not include the photo itself.</p>
+
+    <h3>Apple Ads attribution on iOS</h3>
+    <p>From iOS version 1.0.2, the App uses Apple's AdServices framework for standard Apple Ads attribution. The App sends an attribution token to RevenueCat, which requests attribution information from Apple. When available, this information identifies the advertising campaign, ad group, campaign keyword, ad, country or region, and type of installation or ad interaction. RevenueCat associates this information with its anonymous App User ID and subscription records so we can measure campaign performance, including installations, trials and paid subscriptions. Campaign keywords describe our ads; they are not the wellbeing text you enter in the App.</p>
+    <p>This integration does not access the device's advertising identifier (IDFA) or request App Tracking Transparency permission. We do not send your voice, transcription, photo, wellbeing descriptions, AI results or session history for advertising attribution. RevenueCat does not forward subscription lifecycle events to Apple Ads through this integration.</p>
 
     <h2>4. Permissions</h2>
     <p>The App may request access to the microphone for speech input and voice visualization, speech recognition for transcription, and the camera for an optional selfie. These permissions are used only when you activate the relevant feature. You can change permissions in your device settings.</p>
@@ -93,6 +98,7 @@
       <li><a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a></li>
       <li><a href="https://developers.google.com/ml-kit/android-data-disclosure">Google ML Kit data disclosure</a></li>
       <li><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a></li>
+      <li><a href="https://www.revenuecat.com/docs/integrations/attribution/apple-search-ads">Apple Ads attribution through RevenueCat</a></li>
       <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
     </ul>
   </main>
