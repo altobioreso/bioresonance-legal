@@ -81,7 +81,7 @@ for lang in LANGUAGES:
 
 sitemap = ET.fromstring((ROOT / 'sitemap.xml').read_text())
 urls = [loc.text for loc in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-check(set(urls) == {SITE+p for p in PATHS.values()} | {SITE+'/privacy.html',SITE+'/terms.html'}, 'Sitemap canonical URLs')
+check(set(urls) == {SITE+p for p in PATHS.values()} | {SITE+'/privacy.html',SITE+'/terms.html',SITE+'/website-privacy.html'}, 'Sitemap canonical URLs')
 check(len(urls) == len(set(urls)), 'Sitemap duplicates')
 robot = RobotFileParser();robot.parse((ROOT / 'robots.txt').read_text().splitlines())
 for bot in ('Googlebot','Bingbot','OAI-SearchBot'):
@@ -92,4 +92,4 @@ for name in ('privacy.html','terms.html'):
     check(text.split('<body>',1)[1] == old.split('<body>',1)[1], f'Legal content modified: {name}')
     check(SITE+'/'+name in text, f'Legal canonical: {name}')
 check((ROOT/'CNAME').read_text().strip()=='bioresonance.club', 'Custom domain')
-print(f'PASS: {checks} checks, six locales, 12 download badges, 8 sitemap URLs, legal content preserved.')
+print(f'PASS: {checks} checks, six locales, 12 download badges, 9 sitemap URLs, app legal content preserved.')

@@ -100,5 +100,12 @@
   "privacy_short": "Datenschutzerklärung (Englisch)",
   "terms_short": "Nutzungsbedingungen (Englisch)",
   "copyright": "© 2026 Bioresonance. Alle Rechte vorbehalten.",
-  "back_top": "Nach oben"
+  "back_top": "Nach oben",
+  "ads_consent_title": "Personalisierte Werbung",
+  "ads_consent_text": "Mit Ihrer Zustimmung verwendet Google Cookies, um Ihren Besuch zu speichern und Ihnen unsere Werbung auf YouTube und seinen Partnerwebsites zu zeigen. Wenn Sie ablehnen, werden keine Werbedaten erfasst. Sie können Ihre Auswahl jederzeit unter „Cookie-Einstellungen“ unten auf der Seite ändern.",
+  "ads_consent_accept": "Akzeptieren",
+  "ads_consent_reject": "Ablehnen",
+  "ads_consent_settings": "Cookie-Einstellungen",
+  "ads_consent_privacy": "Mehr erfahren (auf Englisch)",
+  "ads_consent_policy": "Datenschutz der Website (auf Englisch)"
 }

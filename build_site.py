@@ -22,7 +22,7 @@ def render_all():
     output = {}
     # A new URL ensures returning visitors load the assets matching the HTML.
     assets = {name: '/' + name + '?v=' + hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:12]
-              for name in ('styles.css', 'language-menu.js')}
+              for name in ('styles.css', 'language-menu.js', 'ads-consent.js')}
     for lang, content in data.items():
         if content.keys() != data['en'].keys() or content['lang'] != lang:
             raise ValueError(f'Locale schema mismatch: {lang}')
@@ -30,6 +30,7 @@ def render_all():
         values = {key: html.escape(value, quote=True) for key, value in content.items() if isinstance(value, str)}
         values.update(canonical=canonical, page_path=CHOICE_PATHS[lang], app_store=APP_STORE, language_code=lang.upper())
         values.update(stylesheet_path=assets['styles.css'], language_script_path=assets['language-menu.js'])
+        values['ads_consent_script_path'] = assets['ads-consent.js']
         image_suffix = '-' + lang
         values.update(hero_image_path=f'/assets/landing/bioresonance-hero{image_suffix}.webp',
                       ai_image_path=f'/assets/landing/local-ai{image_suffix}.webp',
@@ -57,7 +58,7 @@ def render_all():
         ]}
         values['schema'] = json.dumps(schema, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c')
         output['index.html' if lang == 'en' else f'{lang}.html'] = template.substitute(values)
-    urls = [SITE + path for path in PATHS.values()] + [SITE + '/privacy.html', SITE + '/terms.html']
+    urls = [SITE + path for path in PATHS.values()] + [SITE + '/privacy.html', SITE + '/terms.html', SITE + '/website-privacy.html']
     output['sitemap.xml'] = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{url}</loc></url>\n' for url in urls) + '</urlset>\n'
     output['robots.txt'] = '# Public pages are available to search engines, including Googlebot, Bingbot and OAI-SearchBot.\nUser-agent: *\nAllow: /\n\nSitemap: https://bioresonance.club/sitemap.xml\n'
     return output

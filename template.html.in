@@ -11,6 +11,7 @@
   <link rel="canonical" href="$canonical">
 $alternates
   <script src="$language_script_path"></script>
+  <script src="$ads_consent_script_path" defer></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bioresonance">
   <meta property="og:title" content="$title">
@@ -115,8 +116,18 @@ $og_alternates
     </section>
   </main>
   <footer class="site-footer"><div><a class="site-brand footer-brand" href="#top" aria-label="$back_top"><img src="/assets/landing/bioresonance-logo.webp" width="44" height="44" alt="" loading="lazy"><span><strong>Bioresonance</strong></span></a><p>$footer_notice</p></div>
-    <nav aria-label="$legal_label"><a href="/privacy.html" hreflang="en">$privacy_short</a><a href="/terms.html" hreflang="en">$terms_short</a><span>bioresonance528hz (at) gmail.com</span></nav>
+    <nav aria-label="$legal_label"><a href="/privacy.html" hreflang="en">$privacy_short</a><a href="/terms.html" hreflang="en">$terms_short</a><a href="/website-privacy.html" hreflang="en">$ads_consent_policy</a><button type="button" class="cookie-settings" data-ads-consent="settings" hidden>$ads_consent_settings</button><span>bioresonance528hz (at) gmail.com</span></nav>
     <p class="copyright">$copyright</p>
   </footer>
+  <section id="ads-consent-banner" class="cookie-banner" role="region" aria-labelledby="ads-consent-title" hidden>
+    <div class="cookie-banner-copy">
+      <h2 id="ads-consent-title" tabindex="-1">$ads_consent_title</h2>
+      <p>$ads_consent_text <a href="/website-privacy.html" hreflang="en">$ads_consent_privacy</a></p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" data-ads-consent="reject">$ads_consent_reject</button>
+      <button type="button" data-ads-consent="accept">$ads_consent_accept</button>
+    </div>
+  </section>
 </body>
 </html>
