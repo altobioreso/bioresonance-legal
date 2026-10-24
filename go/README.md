@@ -22,7 +22,7 @@ Les destinations sont fixes :
 
 La page n’accepte pas de destination de redirection fournie dans l’URL. Elle ouvre la fiche de la boutique ; elle ne détecte pas si l’app est déjà installée.
 
-L’animation dure deux cycles de 2,3 secondes, puis laisse une flèche fixe. Elle est désactivée avec `prefers-reduced-motion`. Le sélecteur de langue et la signature Bioresonance restent en bas de page. Les options utilisent un volet natif accessible au clavier ; sans JavaScript, il reste ouvert.
+L’animation boucle en continu par cycles de 2,3 secondes. Elle est désactivée avec `prefers-reduced-motion`. Le sélecteur de langue et la signature Bioresonance restent en bas de page. Les options utilisent un volet natif accessible au clavier ; sans JavaScript, il reste ouvert.
 
 ## Langues et paramètres
 
