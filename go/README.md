@@ -69,6 +69,12 @@ python3 -m http.server 8876 --bind 127.0.0.1
 
 Ouvrir `http://127.0.0.1:8876/go/?preview=tiktok&platform=ios&lang=fr` pour inspecter la page sans redirection. Les tests automatisés vérifient la logique et les scénarios simulés ; ils ne prouvent pas le comportement des apps tierces.
 
+### Vérification du 24 octobre 2026
+
+**114 tests réussis**, dont 60 parcours simulés couvrant TikTok, Instagram, YouTube, Snapchat et Facebook, iOS et Android, et les six langues. Les dix aperçus publics réseau × système ont été contrôlés dans Chrome. Les boutons ouvrent les fiches Bioresonance attendues sur l’App Store et Google Play ; les fichiers de production correspondent aux sources locales. Les tests couvrent aussi la copie du lien, la redirection unique dans le navigateur externe, l’intent Chrome Android et son repli sans boucle.
+
+Ces contrôles valident le code et les liens. L’ouverture depuis les applications sociales natives sur de vrais téléphones reste à tester, notamment leurs restrictions de sortie vers Safari ou Chrome.
+
 Avant une campagne, essayer le lien public depuis les cinq réseaux sur un vrai iPhone et un vrai Android : ouverture de la boutique correcte, menu externe, copie du lien, Chrome présent ou absent, puis navigation dans Safari et Chrome. Contrôler aussi les six langues et le retour arrière.
 
 Commiter les fichiers de `go/` puis les publier sur `main` déclenche le déploiement GitHub Pages existant. Vérifier son succès dans les Actions du dépôt et tester le lien public après déploiement.

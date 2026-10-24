@@ -144,6 +144,7 @@ function boot({ ua = IOS, search = '', clipboardReject = false, prerendering = f
   const nodes = new Map();
   const timers = new Map();
   const navigation = [];
+  const clipboardValues = [];
   const documentEvents = new Map();
   const windowEvents = new Map();
   let sequence = 0;
@@ -165,14 +166,14 @@ function boot({ ua = IOS, search = '', clipboardReject = false, prerendering = f
   const window = { BioGo: router, InAppSpy: () => { if (spyFails) throw new Error('detector unavailable'); return detected(ua); }, addEventListener: (name, fn) => windowEvents.set(name, fn) };
   const context = vm.createContext({
     window, document, location, URL, URLSearchParams,
-    navigator: { userAgent: ua, maxTouchPoints: 5, languages: ['en-US'], clipboard: { writeText: async () => { if (clipboardReject) throw new Error('denied'); } } },
+    navigator: { userAgent: ua, maxTouchPoints: 5, languages: ['en-US'], clipboard: { writeText: async (value) => { if (clipboardReject) throw new Error('denied'); clipboardValues.push(value); } } },
     history: { replaceState: (_state, _title, url) => { location.href = String(url); location.search = new URL(url).search; } },
     setTimeout: (fn) => { const id = ++sequence; timers.set(id, fn); return id; }, clearTimeout: (id) => timers.delete(id)
   });
   vm.runInContext(source('locales.js'), context);
   vm.runInContext(source('app.js'), context);
   return {
-    nodes, timers, navigation, document, documentEvents, windowEvents, translations: window.BIO_GO_LOCALES,
+    nodes, timers, navigation, clipboardValues, document, documentEvents, windowEvents, translations: window.BIO_GO_LOCALES,
     event: async (id, name, value) => element(id).listeners.get(name)?.({ target: { value } }),
     flush: () => { for (const [id, fn] of [...timers]) { timers.delete(id); fn(); } }
   };
@@ -229,3 +230,86 @@ test('Prerender does not redirect until activated', () => {
   page.document.prerendering = false; page.documentEvents.get('prerenderingchange')(); page.flush();
   assert.deepEqual(page.navigation, [router.STORES.ios]);
 });
+
+// Cross-platform social matrix. Android samples deliberately append documented
+// app identifiers to a generic Android WebView UA. This tests our detection and
+// navigation code, not whether a particular installed app permits leaving it.
+const androidSocial = {
+  tiktok: WEBVIEW + ' musical_ly_41.9.0',
+  instagram: WEBVIEW + ' Instagram 393.0',
+  youtube: WEBVIEW + ' YouTube/19.0',
+  snapchat: WEBVIEW + ' Snapchat/12.72.0.39',
+  facebook: WEBVIEW + ' [FB_IAB/FB4A;FBAV/480.0.0.0;]'
+};
+const expectedStores = {
+  ios: 'https://apps.apple.com/app/id6807718780',
+  android: 'https://play.google.com/store/apps/details?id=com.altoboreal.bioresonance'
+};
+for (const network of ['tiktok', 'instagram', 'youtube', 'snapchat', 'facebook']) {
+  for (const platform of ['ios', 'android']) {
+    for (const language of ['en', 'fr', 'de', 'es', 'it', 'pt']) {
+      test(`Social journey: ${network}, ${platform}, ${language}`, async () => {
+        const ua = platform === 'ios' ? social[network] : androidSocial[network];
+        const search = `?lang=${language}&src=${network}&utm_source=${network}&utm_campaign=launch`;
+        const state = inspect(ua, { search });
+        assert.equal(state.network, network);
+        assert.equal(state.platform, platform);
+        assert.equal(state.language, language);
+        assert.equal(state.embedded, true);
+        assert.equal(state.shouldRedirect, false);
+        assert.equal(state.target, expectedStores[platform]);
+
+        const embedded = boot({ ua, search });
+        assert.equal(embedded.document.documentElement.lang, language);
+        assert.equal(embedded.nodes.get('guide').hidden, false);
+        assert.equal(embedded.nodes.get('title').textContent, embedded.translations[language].inAppTitle);
+        assert.equal(embedded.nodes.get('store-ios').href, expectedStores.ios);
+        assert.equal(embedded.nodes.get('store-android').href, expectedStores.android);
+        assert.equal(embedded.nodes.get('browser-action').hidden, platform !== 'android');
+        embedded.flush();
+        assert.deepEqual(embedded.navigation, []);
+
+        await embedded.event('copy-link', 'click');
+        const copied = new URL(embedded.clipboardValues[0]);
+        assert.equal(copied.href, 'https://bioresonance.club/go/' + search);
+        assert.equal(embedded.nodes.get('share-url').value, copied.href);
+        assert.equal(embedded.nodes.get('copy-status').textContent,
+          embedded.translations[language].copied + '. ' + embedded.translations[language].copyHelp);
+        embedded.flush();
+        assert.deepEqual(embedded.navigation, []);
+
+        // Opening the current link, or pasting the copied one, in the external
+        // browser must select the same app and replace history exactly once.
+        for (const externalSearch of [search, copied.search]) {
+          const external = boot({ ua: platform === 'ios' ? IOS : ANDROID, search: externalSearch });
+          assert.equal(external.document.documentElement.lang, language);
+          assert.equal(external.nodes.get('guide').hidden, true);
+          external.flush();
+          external.flush();
+          assert.deepEqual(external.navigation, [expectedStores[platform]]);
+        }
+
+        if (platform === 'android') {
+          const intent = embedded.nodes.get('open-browser').href;
+          assert.match(intent, /;package=com\.android\.chrome;/);
+          const intentDestination = new URL(intent.split('#Intent;')[0].replace(/^intent:/, 'https:'));
+          assert.equal(intentDestination.href, copied.href);
+          const chrome = boot({ ua: ANDROID, search: intentDestination.search });
+          chrome.flush();
+          assert.deepEqual(chrome.navigation, [expectedStores.android]);
+
+          const fallback = new URL(decodeURIComponent(intent.match(/S\.browser_fallback_url=([^;]+);/)[1]));
+          assert.equal(fallback.origin, copied.origin);
+          assert.equal(fallback.searchParams.get('lang'), language);
+          assert.equal(fallback.searchParams.get('src'), network);
+          assert.equal(fallback.searchParams.get('manual'), '1');
+          const manual = boot({ ua: ANDROID, search: fallback.search });
+          manual.flush();
+          assert.deepEqual(manual.navigation, []);
+          assert.equal(manual.nodes.get('guide').hidden, false);
+          assert.equal(manual.nodes.get('store-android').href, expectedStores.android);
+        }
+      });
+    }
+  }
+}
