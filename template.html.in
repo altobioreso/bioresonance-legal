@@ -104,7 +104,7 @@ $og_alternates
         <div><dt>$facts_developer</dt><dd>Boris Douarre</dd></div>
         <div><dt>$facts_devices</dt><dd>$facts_devices_value</dd></div>
         <div><dt>$facts_languages</dt><dd>$facts_languages_value</dd></div>
-        <div><dt>$facts_pricing</dt><dd>$facts_pricing_value <a href="$app_store">App Store</a></dd></div>
+        <div><dt>$facts_pricing</dt><dd>$facts_pricing_value <a href="$app_store">App Store</a> · <a href="$google_play">Google Play</a></dd></div>
         <div><dt>$facts_support</dt><dd><span>bioresonance528hz (at) gmail.com</span></dd></div>
       </dl>
     </section>

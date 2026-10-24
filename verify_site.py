@@ -8,7 +8,7 @@ import subprocess
 from urllib.parse import urlsplit, unquote
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
-from build_site import ROOT, SITE, LANGUAGES, PATHS, APP_STORE, render_all
+from build_site import ROOT, SITE, LANGUAGES, PATHS, APP_STORE, GOOGLE_PLAY, render_all
 
 class Page(HTMLParser):
     def __init__(self, text):
@@ -53,7 +53,9 @@ for lang in LANGUAGES:
         check(home['href'] == '/?lang=en', 'English home preserves choice without storage')
     check(not any('noindex' in a.get('content', '') or 'nosnippet' in a.get('content', '') for a in page.nodes('meta')), f'{lang}: robots blocking')
     badges = [a for a in page.nodes('a') if a.get('class') == 'store-badge']
-    check(len(badges) == 2 and all(a.get('href') == APP_STORE and not a.get('aria-disabled') for a in badges), f'{lang}: iOS calls to action')
+    check([a.get('href') for a in badges] == [APP_STORE, GOOGLE_PLAY] * 2
+          and all(a.get('aria-label') and not a.get('aria-disabled') for a in badges),
+          f'{lang}: accessible iOS and Android calls to action')
     check(not any(a.get('aria-disabled') for a in page.nodes('div')), f'{lang}: disabled old badges')
     for image in page.nodes('img'):
         check(all(k in image for k in ('alt','width','height')), f'{lang}: image dimensions/accessibility')
@@ -74,7 +76,7 @@ for lang in LANGUAGES:
     schema_text = re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S).group(1)
     graph = json.loads(schema_text)['@graph']
     app = next(node for node in graph if node['@type'] == 'MobileApplication')
-    check(app['installUrl'] == APP_STORE and app['name'] == 'Bioresonance: Frequency Sounds', f'{lang}: app schema')
+    check(app['installUrl'] == [APP_STORE, GOOGLE_PLAY] and app['name'] == 'Bioresonance: Frequency Sounds', f'{lang}: app schema')
     check(not any('aggregateRating' in node or 'review' in node for node in graph), f'{lang}: unsupported ratings')
     check(next(node for node in graph if node['@type'] == 'WebPage')['url'] == canonical[0], f'{lang}: schema canonical')
     check(all(l in text for l in ('Boris Douarre','bioresonance528hz (at) gmail.com')), f'{lang}: publisher and contact')
@@ -88,8 +90,9 @@ for bot in ('Googlebot','Bingbot','OAI-SearchBot'):
     for url in urls: check(robot.can_fetch(bot,url), f'Blocked: {bot}, {url}')
 for name in ('privacy.html','terms.html'):
     text = (ROOT / name).read_text()
-    old = subprocess.check_output(['git','show',f'4aa35eb:{name}'], cwd=ROOT, text=True)
+    # Preserve the published policy, including the October 8 Apple Ads disclosure.
+    old = subprocess.check_output(['git','show',f'd5cea00:{name}'], cwd=ROOT, text=True)
     check(text.split('<body>',1)[1] == old.split('<body>',1)[1], f'Legal content modified: {name}')
     check(SITE+'/'+name in text, f'Legal canonical: {name}')
 check((ROOT/'CNAME').read_text().strip()=='bioresonance.club', 'Custom domain')
-print(f'PASS: {checks} checks, six locales, 12 download badges, 9 sitemap URLs, app legal content preserved.')
+print(f'PASS: {checks} checks, six locales, 24 download badges, 9 sitemap URLs, app legal content preserved.')

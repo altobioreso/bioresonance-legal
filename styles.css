@@ -243,6 +243,7 @@ p, li { font-size: 1rem; }
 .store-badge strong { font-size: 1.05rem; letter-spacing: -.02em; }
 .store-icon { width: 25px; font-size: 1.7rem; }
 .apple-icon { width: 27px; height: 27px; color: #fff; line-height: 1; transform: translateY(-1px); }
+.google-play-icon { width: 27px; height: 27px; flex-shrink: 0; }
 .play-icon {
   width: 0;
   height: 0;

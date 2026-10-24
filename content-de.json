@@ -2,8 +2,8 @@
   "lang": "de",
   "locale": "de_DE",
   "language_name": "Deutsch",
-  "title": "Bioresonance: Frequenzklänge für iPhone und iPad",
-  "description": "Entdecke über 10.000 Rife-Frequenzsequenzen und 1.500 Programme. Gestalte Klangrituale für Entspannung, Meditation und Konzentration auf iPhone und iPad.",
+  "title": "Bioresonance: Frequenzklänge für iPhone, iPad und Android",
+  "description": "Entdecke über 10.000 Rife-Frequenzsequenzen und 1.500 Programme. Gestalte Klangrituale für Entspannung, Meditation und Konzentration auf iPhone, iPad und Android.",
   "tagline": "Dein Klang. Dein Ritual.",
   "home_label": "Bioresonance Startseite",
   "nav_label": "Hauptnavigation",
@@ -19,7 +19,9 @@
   "store_label": "Bioresonance herunterladen",
   "store_small": "Laden im",
   "store_accessible": "Bioresonance im App Store herunterladen",
-  "store_note": "Für iPhone und iPad.",
+  "google_play_small": "Jetzt bei",
+  "google_play_accessible": "Bioresonance bei Google Play herunterladen",
+  "store_note": "Für iPhone, iPad und Android.",
   "hero_alt": "Startbildschirm der Bioresonance App mit einem persönlichen Frequenzritual",
   "trust_label": "Die wichtigsten Funktionen",
   "trust1_title": "Offline hören",
@@ -60,7 +62,7 @@
   "facts_app": "App",
   "facts_developer": "Entwickler",
   "facts_devices": "Geräte",
-  "facts_devices_value": "iPhone und iPad · iOS / iPadOS 16.6 oder neuer",
+  "facts_devices_value": "iPhone und iPad · iOS / iPadOS 16.6 oder neuer · Android",
   "facts_languages": "App-Sprachen",
   "facts_languages_value": "Englisch, Französisch, Deutsch, Spanisch, Italienisch und Portugiesisch",
   "facts_pricing": "Preise und Abonnements",
@@ -86,7 +88,7 @@
     },
     {
       "q": "Und für Android?",
-      "a": "Die Android-Version erscheint demnächst. Die Spracheingabe kann den Sprachdienst des Geräts nutzen, der Sprache gegebenenfalls außerhalb des Geräts verarbeitet."
+      "a": "Die Android-Version ist jetzt bei Google Play verfügbar. Die Spracheingabe kann den Sprachdienst des Geräts nutzen, der Sprache gegebenenfalls außerhalb des Geräts verarbeitet."
     },
     {
       "q": "Ist das eine medizinische Behandlung?",
@@ -94,7 +96,7 @@
     }
   ],
   "final_heading": "Gestalte dein Frequenzritual.",
-  "final_text": "Entdecke Bioresonance auf iPhone und iPad.",
+  "final_text": "Entdecke Bioresonance auf iPhone, iPad und Android.",
   "footer_notice": "Für Entspannung und Wohlbefinden gedacht. Dient nicht der Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten und ersetzt keine medizinische Beratung oder Behandlung.",
   "legal_label": "Rechtliche Hinweise und Support",
   "privacy_short": "Datenschutzerklärung (Englisch)",

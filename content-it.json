@@ -2,8 +2,8 @@
   "lang": "it",
   "locale": "it_IT",
   "language_name": "Italiano",
-  "title": "Bioresonance: app di frequenze sonore per iPhone e iPad",
-  "description": "Esplora oltre 10.000 sequenze di frequenze Rife e 1.500 programmi. Crea rituali sonori per rilassarti, meditare e concentrarti, sul tuo iPhone o iPad.",
+  "title": "Bioresonance: app di frequenze sonore per iPhone, iPad e Android",
+  "description": "Esplora oltre 10.000 sequenze di frequenze Rife e 1.500 programmi. Crea rituali sonori per rilassarti, meditare e concentrarti, sul tuo iPhone, iPad o Android.",
   "tagline": "Il tuo suono. Il tuo rituale.",
   "home_label": "Pagina iniziale di Bioresonance",
   "nav_label": "Navigazione principale",
@@ -19,7 +19,9 @@
   "store_label": "Scarica Bioresonance",
   "store_small": "Scarica su",
   "store_accessible": "Scarica Bioresonance su App Store",
-  "store_note": "Per iPhone e iPad.",
+  "google_play_small": "Disponibile su",
+  "google_play_accessible": "Scarica Bioresonance su Google Play",
+  "store_note": "Per iPhone, iPad e Android.",
   "hero_alt": "Schermata iniziale dell’app Bioresonance con un rituale di frequenze personalizzato",
   "trust_label": "Funzionalità principali",
   "trust1_title": "Ascolto offline",
@@ -60,7 +62,7 @@
   "facts_app": "App",
   "facts_developer": "Sviluppatore",
   "facts_devices": "Dispositivi",
-  "facts_devices_value": "iPhone e iPad · iOS / iPadOS 16.6 o versioni successive",
+  "facts_devices_value": "iPhone e iPad · iOS / iPadOS 16.6 o versioni successive · Android",
   "facts_languages": "Lingue dell’app",
   "facts_languages_value": "Inglese, francese, tedesco, spagnolo, italiano e portoghese",
   "facts_pricing": "Prezzo e abbonamenti",
@@ -86,7 +88,7 @@
     },
     {
       "q": "E su Android?",
-      "a": "La versione per Android è in arrivo. L’inserimento vocale potrà dipendere dal servizio vocale del dispositivo, che può elaborare la voce da remoto."
+      "a": "La versione per Android è ora disponibile su Google Play. L’inserimento vocale può dipendere dal servizio vocale del dispositivo, che può elaborare la voce da remoto."
     },
     {
       "q": "È un trattamento medico?",
@@ -94,7 +96,7 @@
     }
   ],
   "final_heading": "Crea il tuo rituale di frequenze.",
-  "final_text": "Scarica Bioresonance per iPhone e iPad.",
+  "final_text": "Scarica Bioresonance per iPhone, iPad e Android.",
   "footer_notice": "Pensata per il rilassamento e il benessere. Non diagnostica, tratta, cura o previene malattie e non sostituisce il parere o il trattamento medico.",
   "legal_label": "Link legali e di assistenza",
   "privacy_short": "Informativa sulla privacy (in inglese)",

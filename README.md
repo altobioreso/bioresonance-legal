@@ -14,9 +14,12 @@ Published on GitHub Pages at https://bioresonance.club.
 - `/privacy.html` and `/terms.html`: existing English legal documents
 - `/website-privacy.html`: website advertising consent and privacy notice
 
-All language pages link to the iOS app, expose reciprocal `hreflang` links,
+All language pages link to the iOS and Android apps, expose reciprocal `hreflang` links,
 use self-referencing canonical URLs, and include descriptive JSON-LD.
 The mobile app's verified App Store ID is `6807718780`.
+The Android app is available on Google Play at
+https://play.google.com/store/apps/details?id=com.altoboreal.bioresonance.
+The public listing and Install button were verified on 2026-10-24.
 
 ## Editing and checking
 
@@ -108,8 +111,8 @@ https://support.google.com/adspolicy/answer/16701855
 ## Product facts and structured data
 
 Content and compatibility were checked against the public Apple listing on
-2026-09-28. Keep them updated when the product changes. Android retains its
-existing coming-soon status until a public release URL is supplied and verified.
+2026-09-28. Android availability was checked against its public Google Play
+listing on 2026-10-24. Keep these facts updated when the product changes.
 
 The `MobileApplication`, `WebPage`, `WebSite` and publisher JSON-LD describes
 visible facts. No reviews, ratings, medical benefits or subscription prices

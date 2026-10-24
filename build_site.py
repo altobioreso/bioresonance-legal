@@ -10,10 +10,14 @@ from string import Template
 ROOT = Path(__file__).resolve().parent
 SITE = 'https://bioresonance.club'
 APP_STORE = 'https://apps.apple.com/us/app/bioresonance-frequency-sounds/id6807718780'
+GOOGLE_PLAY = 'https://play.google.com/store/apps/details?id=com.altoboreal.bioresonance'
 LANGUAGES = ('en', 'fr', 'de', 'es', 'it', 'pt')
 PATHS = {lang: '/' if lang == 'en' else f'/{lang}.html' for lang in LANGUAGES}
 CHOICE_PATHS = {**PATHS, 'en': '/?lang=en'}
 APPLE_ICON = '<svg class="store-icon apple-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.7 19.5c-.8 1.2-1.7 2.4-3 2.5-1.4 0-1.8-.8-3.3-.8s-2 .8-3.3.8c-1.3.1-2.3-1.3-3.1-2.5-1.7-2.5-3-7-.3-10.1.9-1.5 2.4-2.5 4.1-2.5 1.3 0 2.5.9 3.3.9.8 0 2.2-1.1 3.7-.9.7 0 2.4.3 3.6 1.9-3.1 1.8-2.6 5.9.5 7.1-.7 1.6-1.5 3.3-2.2 3.6ZM14.4 5.2c.7-.8 1.9-1.5 2.9-1.5.1 1.2-.3 2.4-1 3.2-.7.9-1.8 1.5-2.9 1.5-.1-1.2.4-2.4 1-3.2Z"/></svg>'
+
+
+GOOGLE_PLAY_ICON = '<svg class="store-icon google-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M3 2.5 12.5 12 3 21.5Z"/><path fill="#34A853" d="m3 2.5 12.5 7.3-3 2.2Z"/><path fill="#FBBC04" d="m15.5 9.8 4 2.2-4 2.2-3-2.2Z"/><path fill="#EA4335" d="m3 21.5 9.5-9.5 3 2.2Z"/></svg>'
 
 
 def render_all():
@@ -28,7 +32,7 @@ def render_all():
             raise ValueError(f'Locale schema mismatch: {lang}')
         canonical = SITE + PATHS[lang]
         values = {key: html.escape(value, quote=True) for key, value in content.items() if isinstance(value, str)}
-        values.update(canonical=canonical, page_path=CHOICE_PATHS[lang], app_store=APP_STORE, language_code=lang.upper())
+        values.update(canonical=canonical, page_path=CHOICE_PATHS[lang], app_store=APP_STORE, google_play=GOOGLE_PLAY, language_code=lang.upper())
         values.update(stylesheet_path=assets['styles.css'], language_script_path=assets['language-menu.js'])
         values['ads_consent_script_path'] = assets['ads-consent.js']
         image_suffix = '-' + lang
@@ -49,12 +53,13 @@ def render_all():
             for code, item in data.items()
         )
         values['store_badge'] = f'<a class="store-badge" href="{APP_STORE}" aria-label="{values["store_accessible"]}">{APPLE_ICON}<span><small>{values["store_small"]}</small><strong>App Store</strong></span></a>'
+        values['store_badge'] += f'<a class="store-badge" href="{GOOGLE_PLAY}" aria-label="{values["google_play_accessible"]}">{GOOGLE_PLAY_ICON}<span><small>{values["google_play_small"]}</small><strong>Google Play</strong></span></a>'
         values['faq_html'] = '\n'.join(f'<details><summary>{html.escape(faq["q"])}</summary><p>{html.escape(faq["a"])}</p></details>' for faq in content['faq'])
         schema = {'@context': 'https://schema.org', '@graph': [
             {'@type': 'Person', '@id': SITE + '/#developer', 'name': 'Boris Douarre'},
             {'@type': 'WebSite', '@id': SITE + '/#website', 'url': SITE + '/', 'name': 'Bioresonance', 'inLanguage': list(LANGUAGES), 'publisher': {'@id': SITE + '/#developer'}},
             {'@type': 'WebPage', '@id': canonical + '#webpage', 'url': canonical, 'name': content['title'], 'description': content['description'], 'inLanguage': lang, 'isPartOf': {'@id': SITE + '/#website'}, 'mainEntity': {'@id': SITE + '/#app'}},
-            {'@type': 'MobileApplication', '@id': SITE + '/#app', 'name': 'Bioresonance: Frequency Sounds', 'url': SITE + '/', 'description': content['hero_lead'], 'applicationCategory': 'LifestyleApplication', 'operatingSystem': 'iOS 16.6 or later; iPadOS 16.6 or later', 'availableOnDevice': ['iPhone', 'iPad'], 'inLanguage': list(LANGUAGES), 'installUrl': APP_STORE, 'sameAs': APP_STORE, 'image': SITE + '/assets/landing/bioresonance-logo.webp', 'screenshot': values['hero_image_url'], 'author': {'@id': SITE + '/#developer'}}
+            {'@type': 'MobileApplication', '@id': SITE + '/#app', 'name': 'Bioresonance: Frequency Sounds', 'url': SITE + '/', 'description': content['hero_lead'], 'applicationCategory': 'LifestyleApplication', 'operatingSystem': 'iOS 16.6 or later; iPadOS 16.6 or later; Android', 'availableOnDevice': ['iPhone', 'iPad', 'Android'], 'inLanguage': list(LANGUAGES), 'installUrl': [APP_STORE, GOOGLE_PLAY], 'sameAs': [APP_STORE, GOOGLE_PLAY], 'image': SITE + '/assets/landing/bioresonance-logo.webp', 'screenshot': values['hero_image_url'], 'author': {'@id': SITE + '/#developer'}}
         ]}
         values['schema'] = json.dumps(schema, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c')
         output['index.html' if lang == 'en' else f'{lang}.html'] = template.substitute(values)
