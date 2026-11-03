@@ -14,89 +14,85 @@
     <a class="back" href="index.html">← Bioresonance legal</a>
     <p class="eyebrow">BIORESONANCE</p>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 8, 2026</p>
+    <p class="updated">Last updated: November 3, 2026</p>
 
-    <p>This Privacy Policy explains how Bioresonance (“Bioresonance”, “we”, “us” or “our”) handles information when you use the Bioresonance mobile application (the “App”). Bioresonance is designed as a private, on-device relaxation and wellbeing experience.</p>
+    <p>This Privacy Policy explains how Bioresonance (“we”, “us” or “our”) handles information when you use the Bioresonance mobile application (the “App”). Our personalized rituals are designed to run on your device. Purchases, technical diagnostics and optional advertising measurement involve the providers described below.</p>
 
     <aside class="summary">
       <strong>Privacy at a glance</strong>
       <ul>
-        <li>Your typed wellbeing descriptions, photos, AI personalization and saved session history are processed on your device.</li>
-        <li>Android speech input may be processed by your device's speech service, including remotely when a dedicated on-device recognizer is unavailable.</li>
-        <li>We do not use this content for advertising or sell it.</li>
-        <li>RevenueCat and the relevant app store process purchase and subscription information. RevenueCat also processes subscription-offer usage and technical information, including an approximate country.</li>
-        <li>Firebase Crashlytics and Google ML Kit process technical diagnostics and usage information as explained below. We do not attach your photos or wellbeing text to these technical reports.</li>
-        <li>From iOS version 1.0.2, Apple Ads attribution data helps us measure which campaigns lead to installations, trials and paid subscriptions, using RevenueCat.</li>
+        <li>Your ritual descriptions, photos, AI personalization and saved ritual history are processed locally. We do not send this content to advertising services.</li>
+        <li>In version 1.1.0, the App requests on-device speech recognition on iOS and Android, and does not switch to cloud transcription when that recognition is unavailable. You can type your request instead and skip the photo.</li>
+        <li>Apple or Google and RevenueCat handle purchases, subscription entitlement and related technical and usage information.</li>
+        <li>Firebase Crashlytics and Google ML Kit process technical diagnostics. This is separate from the optional advertising choice.</li>
+        <li>Google and YouTube campaign measurement is off until you agree. It also requires Apple’s tracking permission on iOS. You can change your choice in Settings → Privacy.</li>
       </ul>
     </aside>
 
-    <h2>1. Information processed on your device</h2>
-    <p>The App may process the following information locally:</p>
-    <ul>
-      <li>voice input and its transcription, subject to the Android speech-service processing described below;</li>
-      <li>text you enter about how you feel, the context and your intended wellbeing state;</li>
-      <li>a photo you choose to take as a personal visual anchor;</li>
-      <li>voice waveform and harmonic values generated for the in-app visual experience;</li>
-      <li>local AI output, selected programs and frequency sequences;</li>
-      <li>session history, preferences and onboarding status.</li>
-    </ul>
-    <p>This content is used to provide the features you request. The App’s AI model runs on your device. The App itself does not upload your ritual text, transcription, photo, AI result or session history to Bioresonance, RevenueCat or Firebase. Speech-service processing is described separately below.</p>
-    <p>If you add a photo, the App may use on-device face detection to obtain limited visual measurements such as image quality, eye openness and alignment. This is not facial identification or a medical assessment. The photo is not included in the technical data described in section 3.</p>
-    <p>On Android, the App requests on-device speech recognition. When a dedicated on-device recognizer is unavailable, the current version may use the device's default speech recognition service with an offline preference. That preference does not guarantee local processing: depending on the service and its settings, voice input may be sent to the service provider for transcription. The provider's privacy practices govern that processing. You can choose not to use the microphone and still browse and play the catalog; creating a personalized voice ritual currently requires speech input.</p>
+    <h2>1. Your ritual and on-device processing</h2>
+    <p>The App processes the text you enter about your needs, the context and your desired state; optional microphone input and transcription; an optional photo; voice waveform and harmonic measurements; local AI output; selected programs and sequences; and saved session history and preferences. These features do not require a Bioresonance account.</p>
+    <p>The AI model runs on your device. The App does not intentionally upload your ritual descriptions, transcription, photos, AI results, selected frequency sequences or saved ritual history to Bioresonance, Firebase or RevenueCat. These contents are not supplied as advertising event parameters. Operating-system services and your own device backup settings remain separate from the App’s processing.</p>
+    <p>If you add a photo, Google ML Kit performs face detection on the device to obtain limited visual measurements, such as capture quality, eye openness and alignment. This is not facial identification, a medical assessment or a remote analysis of the photo. Technical SDK information is described in section 3.</p>
+    <p>In version 1.1.0, microphone transcription uses the system’s on-device speech recognizer. If the device, language or permissions do not support it, voice input may be unavailable; the App does not silently fall back to a remote speech service. You can complete the personalized ritual using text. Earlier Android versions could use a default speech service with an offline preference that did not guarantee local processing; that service’s privacy practices applied to any remote transcription.</p>
 
     <h2>2. Purchases and subscriptions</h2>
-    <p>Payments are processed by Apple through the App Store or by Google through Google Play. We do not receive your complete payment-card details.</p>
-    <p>We use RevenueCat to present subscription offers, validate purchases, restore purchases and determine subscription entitlement. RevenueCat may receive an anonymous App User ID, purchase and subscription history, product identifiers, transaction or receipt information, entitlement status, store and platform information, and related technical request data. RevenueCat Paywalls also record when subscription offers are viewed, for usage analysis. RevenueCat may determine a country from an IP address when a transaction country is unavailable; RevenueCat states that it discards the IP address after determining the country. We do not send your wellbeing content to RevenueCat.</p>
+    <p>Payments are processed by Apple through the App Store or by Google through Google Play. We do not receive complete payment-card details.</p>
+    <p>RevenueCat presents subscription offers, validates and restores purchases, and determines which subscription features are available. It processes a generated pseudonymous App User ID, product and transaction identifiers, receipts or purchase tokens, purchase and subscription history, entitlement status, store and platform information, and technical request information. RevenueCat’s subscription interface can record offer views and related interactions for usage analysis.</p>
+    <p>RevenueCat also determines a country using transaction information or, when needed, an IP-derived country. RevenueCat states that the IP address is discarded after determining that country. The generated customer ID is not your name or email address, but it is an identifier and should not be understood as fully anonymous data. Your ritual content is not sent to RevenueCat.</p>
 
-    <h2>3. Technical diagnostics and usage information</h2>
-    <p>When Firebase Crashlytics is enabled in a release, Google may receive technical diagnostic information such as crash stack traces, relevant application state, app version, device model, operating-system version, timestamps, installation identifiers and session identifiers. Associated Firebase installation and session services also process app-instance identifiers and session events. This information helps identify and fix reliability problems.</p>
-    <p>We do not use Firebase Analytics in the current App, and we do not intentionally include your voice, transcription, photo or wellbeing descriptions in Crashlytics logs.</p>
-    <p>On Android, the App uses Google ML Kit for optional on-device face detection. The bundled SDK may send Google device and app information, installation identifiers, performance measurements, feature-use events, error codes and configuration information such as image format and resolution. Google uses this technical information for diagnostics and usage analytics. These exchanges do not include the photo itself.</p>
+    <h2>3. Reliability and technical SDK information</h2>
+    <p>Firebase Crashlytics is enabled in store releases to help identify and resolve failures. Google processes crash stack traces and relevant application state, app and SDK versions, device and operating-system information, timestamps, installation and session identifiers, and associated technical diagnostics. When optional Analytics is enabled, Crashlytics can also receive Analytics event breadcrumbs that help explain activity preceding a crash.</p>
+    <p>We do not deliberately attach your ritual descriptions, voice, photos, selected programs or AI output as crash-report logs, custom fields or user identifiers. Technical diagnostics are separate from advertising measurement and are not disabled by declining the advertising choice.</p>
+    <p>Google ML Kit on both iOS and Android may send technical information to Google, including device and app information, per-installation identifiers, performance measurements, feature-use events, errors, and configuration information such as image format and dimensions. Google uses this for diagnostics and usage analytics. The face-detection feature processes the image locally; these technical exchanges do not upload the photo.</p>
+    <p>The local ritual diagnostic journal used during development is unavailable in App Store and Google Play release builds. An earlier development preference cannot enable that journal in a store release.</p>
+
+    <h2>4. Advertising attribution and your choice</h2>
+    <h3>Optional Google and YouTube campaign measurement</h3>
+    <p>This release does not display advertisements inside the App. The optional measurement concerns advertisements promoting Bioresonance elsewhere, including on Google and YouTube.</p>
+    <p>Google Analytics for Firebase collection starts only after your affirmative choice. On iOS, the App additionally requires App Tracking Transparency authorization for this measurement. Declining does not restrict the App’s features or change your subscription. Advertising personalization is disabled in our measurement configuration.</p>
+    <p>When enabled, Google Analytics processes an app-instance identifier, available advertising or device identifiers, technical app and device information, general location derived from a masked IP address, app lifecycle and engagement events, and supported automatic in-app purchase and subscription events, which can include product identifiers, names and prices. The App also records an attempt to open a subscription offer. Automatic screen-name reporting is disabled; ritual text, symptoms, photos, voice, chosen programs and local diagnostic records are not sent as commercial event data.</p>
+    <p>Our Analytics property is linked to Google Ads for campaign measurement. Permitted measurement data can help connect app installations and commercial interactions to advertisements. With the same permission, RevenueCat receives the Firebase app-instance identifier and your measurement choice, version of that choice and measurement environment, linking these preferences to its subscription record. This does not make your ritual content available to Google Ads or RevenueCat.</p>
+    <p>You can refuse or withdraw this permission in Settings → Privacy. Withdrawal disables Analytics collection on the device, resets its Analytics identifier and queues the updated choice for RevenueCat. If the device is offline, the provider receives that update when synchronization is possible. Withdrawal does not automatically delete data already received, cancel a subscription or disable purchase validation and technical diagnostics. On iOS, you can also change tracking permission in the device’s Settings.</p>
 
     <h3>Apple Ads attribution on iOS</h3>
-    <p>From iOS version 1.0.2, the App uses Apple's AdServices framework for standard Apple Ads attribution. The App sends an attribution token to RevenueCat, which requests attribution information from Apple. When available, this information identifies the advertising campaign, ad group, campaign keyword, ad, country or region, and type of installation or ad interaction. RevenueCat associates this information with its anonymous App User ID and subscription records so we can measure campaign performance, including installations, trials and paid subscriptions. Campaign keywords describe our ads; they are not the wellbeing text you enter in the App.</p>
-    <p>This integration does not access the device's advertising identifier (IDFA) or request App Tracking Transparency permission. We do not send your voice, transcription, photo, wellbeing descriptions, AI results or session history for advertising attribution. RevenueCat does not forward subscription lifecycle events to Apple Ads through this integration.</p>
+    <p>Since iOS version 1.0.2, a separate integration uses Apple’s AdServices framework. RevenueCat receives an attribution token and requests available attribution information from Apple, such as campaign, ad group, campaign keyword, ad, country or region, and installation or ad-interaction type. RevenueCat associates this information with its customer and subscription records to measure our Apple campaign performance. Campaign keywords describe our advertisements; they are not the words you enter for your ritual.</p>
+    <p>This Apple attribution integration does not itself request App Tracking Transparency authorization or access the IDFA. It is separate from the optional Google measurement choice above. Your ritual descriptions, voice, photos, AI output and saved session history are not sent for this attribution.</p>
 
-    <h2>4. Permissions</h2>
-    <p>The App may request access to the microphone for speech input and voice visualization, speech recognition for transcription, and the camera for an optional selfie. These permissions are used only when you activate the relevant feature. You can change permissions in your device settings.</p>
+    <h2>5. Permissions and support</h2>
+    <p>The App requests microphone and speech-recognition permissions when you use voice input, and camera permission when you choose to take a photo. You can type instead of using the microphone and skip the photo. Permissions can be changed in your device settings.</p>
+    <p>If you contact support, we process the contact information and message you choose to send so that we can respond. Please do not send payment-card details or unnecessary sensitive information.</p>
 
-    <h2>5. Purposes and legal bases</h2>
-    <p>Where applicable under data-protection law, we rely on:</p>
-    <ul>
-      <li><strong>performance of a contract</strong> to provide features, subscriptions and purchase restoration;</li>
-      <li><strong>legitimate interests</strong> to secure the App, prevent abuse and improve technical reliability;</li>
-      <li><strong>consent</strong> for device permissions and any processing for which consent is required by law;</li>
-      <li><strong>legal obligations</strong> relating to transactions, accounting and consumer protection.</li>
-    </ul>
+    <h2>6. Purposes and legal bases</h2>
+    <p>Where applicable, we rely on performance of a contract to provide requested features, purchases and restoration; legitimate interests to secure the service, prevent abuse, provide support and improve technical reliability; consent for optional advertising measurement and other processing requiring consent; and legal obligations concerning transactions and consumer protection. System permissions and the App’s advertising choice are distinct controls.</p>
 
-    <h2>6. Retention and deletion</h2>
-    <p>Local content remains on your device until you delete it in the App, clear the App’s data or uninstall the App, subject to your device’s backup settings. Session history can be deleted from the Sessions screen.</p>
-    <p>Apple, Google, RevenueCat, Firebase and any speech-service provider retain information according to their own legal obligations and retention policies. Firebase states that Crashlytics crash stack traces and associated identifiers are generally retained for 90 days before deletion begins. Transaction records may be retained longer where required by tax, accounting, fraud-prevention or consumer-protection law. Deleting local App data does not automatically erase records held by these providers or cancel a subscription.</p>
+    <h2>7. Retention and deletion</h2>
+    <p>Local content remains on your device until you remove it in the App, clear app data or uninstall, subject to applicable device backup settings. Saved sessions can be deleted in the App. Android’s app backup is disabled in this release.</p>
+    <p>We retain provider-held information only as needed for the purposes described above and applicable legal obligations. Analytics event and user-data retention follows our property settings and Google’s service policies; aggregated reports can have different retention. Firebase states that Crashlytics crash traces and associated identifiers are retained for 90 days before removal begins. Subscription and transaction information may be kept longer for accounting, fraud prevention, restoration and legal obligations. Support information is kept as necessary to handle the request and relevant follow-up.</p>
+    <p>Deleting local app data or withdrawing consent does not automatically erase provider-held records or cancel a subscription. Contact us to request deletion of information we can identify and control; we may need enough information to locate the relevant subscription or technical record, and some records must be retained where legally required. Manage subscription cancellation through the relevant app store.</p>
 
-    <h2>7. Sharing and international transfers</h2>
-    <p>We do not sell your personal information. Limited information may be processed by Apple, Google, RevenueCat, Firebase and the Android speech-service provider as described above. These providers may process information outside your country and use contractual and legal safeguards for international transfers where required.</p>
+    <h2>8. Providers and international processing</h2>
+    <p>We do not sell your personal information. Apple, Google, Firebase and RevenueCat process the limited information described in this Policy, including optional advertising measurement with Google. These providers may process information outside your country and use contractual and other legally required safeguards for international transfers. An optional measurement choice does not authorize us to send your ritual content to advertising services.</p>
 
-    <h2>8. Your rights</h2>
-    <p>Depending on your location, you may have rights to access, correct, delete, restrict or object to processing, receive a portable copy of certain information, and lodge a complaint with a supervisory authority. Much of the App’s content is stored only on your device and is not accessible to Bioresonance. You can directly remove local content through the App or by deleting the App.</p>
-    <p>For purchase information, you may also need to contact Apple, Google or RevenueCat because those providers control parts of the transaction record.</p>
+    <h2 id="your-rights">9. Your rights and choices</h2>
+    <p>Depending on where you live, you may have rights to access, correct, delete or receive a copy of information, restrict or object to processing, withdraw consent and complain to a supervisory authority. Withdrawing consent does not affect processing that lawfully occurred before withdrawal. You may exercise the optional advertising choice in Settings → Privacy without losing access to the App.</p>
+    <p>Most ritual content is held only on your device and is not accessible to us. You can remove that content directly. For provider-held information or a privacy request, use the contact below. Apple and Google control parts of the store transaction record and may also need to handle requests relating to those records.</p>
 
-    <h2>9. Children</h2>
-    <p>The App is not directed to children under 13. If local law requires a higher age for independent consent, a parent or legal guardian must authorize use. We do not knowingly collect children’s personal information through a Bioresonance account because the App does not require an account.</p>
+    <h2>10. Children</h2>
+    <p>The App is not directed to children under 13. Where local law requires a higher age for independent consent, a parent or legal guardian must authorize use. We do not knowingly seek personal information from children under 13. If you believe a child has supplied personal information to us, please contact us so that we can review the request and take appropriate action.</p>
 
-    <h2>10. Security</h2>
-    <p>We use reasonable technical and organizational measures designed to protect information. No device, software or transmission method is completely secure. Protect your device with an access code and keep its operating system up to date.</p>
-
-    <h2>11. Changes to this Policy</h2>
-    <p>We may update this Policy when the App, our providers or applicable law changes. The revised date will appear at the top of this page. Material changes may also be communicated in the App or through the store listing.</p>
+    <h2>11. Security and changes</h2>
+    <p>We use reasonable technical and organizational measures to protect information. The providers described above use encrypted network connections for their app services. No device, software or transmission method is completely secure. Keep your device protected and updated.</p>
+    <p>We may update this Policy when the App, providers or relevant law changes. The date above identifies the latest revision; material changes may also be communicated in the App or store listing.</p>
 
     <h2>12. Contact</h2>
-    <p>Bioresonance is responsible for this Privacy Policy. For privacy questions or requests, contact us at bioresonance528hz (arobase) gmail.com. You can also use the App Support contact shown on the Bioresonance App Store or Google Play listing.</p>
+    <p>Bioresonance is responsible for this Privacy Policy. For privacy questions and deletion requests, contact bioresonance528hz (arobase) gmail.com. You can also use the App Support contact in the App Store or Google Play listing.</p>
 
-    <h2>13. Third-party privacy information</h2>
+    <h2>13. Provider information</h2>
     <ul>
-      <li><a href="https://www.revenuecat.com/privacy">RevenueCat Privacy Policy</a></li>
+      <li><a href="https://www.revenuecat.com/privacy-policy">RevenueCat Privacy Policy</a></li>
       <li><a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a></li>
-      <li><a href="https://developers.google.com/ml-kit/android-data-disclosure">Google ML Kit data disclosure</a></li>
+      <li><a href="https://support.google.com/analytics/answer/6004245">Google Analytics privacy information</a></li>
+      <li><a href="https://developers.google.com/ml-kit/ios-data-disclosure">Google ML Kit on iOS</a> and <a href="https://developers.google.com/ml-kit/android-data-disclosure">Android</a></li>
       <li><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a></li>
       <li><a href="https://www.revenuecat.com/docs/integrations/attribution/apple-search-ads">Apple Ads attribution through RevenueCat</a></li>
       <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
